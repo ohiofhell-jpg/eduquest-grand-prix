@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Materi Belajar - EduQuest | Scuderia Tifosi Edition</title>
+  <meta name="description" content="Modul pembelajaran Fisika, Kimia, Matematika, dan Koding dengan rangkuman konsep, studi kasus balap F1, dan tips mengingat cepat.">
+  
+  <!-- Google Fonts: Poppins & Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- CSS Utama -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="logo">
+        <span class="logo-badge">🏎️</span>
+        <div class="logo-text">
+          Edu<span>Quest</span>
+          <span class="logo-sub">Scuderia Tifosi Edition</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">🏠 Beranda</a>
+        <a href="materi.html" class="nav-link active">📚 Materi Belajar</a>
+        <a href="kuis.html" class="nav-link">🎯 Kuis Interaktif</a>
+        <a href="peringkat.html" class="nav-link">🏆 Peringkat GP</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="themeToggleBtn" class="theme-toggle" aria-label="Ganti Tema Visual" title="Ganti Mode Tema (Nightlight / Ferrari / Sunset)">
+          🏎️
+        </button>
+        <button id="hamburgerBtn" class="hamburger" aria-label="Buka Menu Navigasi">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== KONTEN MATERI ==================== -->
+  <main class="materi-header-section">
+    <div class="container">
+      
+      <!-- Progress Bar Belajar -->
+      <section class="progress-banner" aria-label="Progres Belajar">
+        <div class="progress-info">
+          <h2><span>📊</span> Capaian Belajar Materi</h2>
+          <p id="progressText">0 dari 10 bab selesai dipelajari</p>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-meta">
+            <span style="color: var(--text-muted);">Progres Pemahaman</span>
+            <span id="progressPercent" style="color: var(--ferrari-yellow);">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- F1 STEM Mini-Banner -->
+      <section style="background: rgba(225, 6, 0, 0.12); border: 1px dashed rgba(225, 6, 0, 0.4); border-radius: var(--radius-md); padding: 1.2rem 1.6rem; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <span style="font-size: 2rem;">🏎️</span>
+          <div>
+            <h4 style="color: var(--ferrari-yellow); font-size: 1.05rem; margin-bottom: 0.2rem;">Fokus Nyata Sains Formula 1 di Tiap Bab</h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">Setiap bab modul dilengkapi penerapan nyata: aerodinamika, KERS, material serat karbon, telemetri kalkulus, hingga algoritma ECU mobil balap.</p>
+          </div>
+        </div>
+        <a href="kuis.html" class="btn btn-primary btn-sm">Uji di Kuis F1 &rarr;</a>
+      </section>
+
+      <!-- Filter Kategori & Pencarian Kata Kunci -->
+      <section class="filter-search-bar" aria-label="Filter dan Pencarian Materi">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="materiSearchInput" 
+            class="search-input" 
+            placeholder="Cari materi, rumus, konsep, atau tips... (misal: Newton, KERS, Turunan, Ikatan)"
+            aria-label="Pencarian Materi Belajar"
+          >
+        </div>
+
+        <div class="category-tabs" role="tablist" aria-label="Kategori Pelajaran">
+          <button class="category-tab active" data-category="Semua" role="tab" aria-selected="true">Semua Mata Pelajaran</button>
+          <button class="category-tab" data-category="Fisika" role="tab" aria-selected="false">🍎 Fisika Dinamika</button>
+          <button class="category-tab" data-category="Kimia" role="tab" aria-selected="false">🧪 Kimia Material</button>
+          <button class="category-tab" data-category="Matematika Wajib" role="tab" aria-selected="false">📐 Mat Wajib</button>
+          <button class="category-tab" data-category="Matematika Lanjut" role="tab" aria-selected="false">📈 Mat Lanjut</button>
+          <button class="category-tab" data-category="TIK & Koding" role="tab" aria-selected="false">💻 TIK &amp; Algoritma</button>
+        </div>
+      </section>
+
+      <!-- Daftar Kartu Materi (Dirender via JavaScript) -->
+      <section id="materiContainer" class="materi-list" aria-label="Daftar Bab Pembelajaran">
+        <!-- Konten akan diisi secara dinamis oleh materi.js -->
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-badge">🏎️</span>
+            <div class="logo-text">
+              Edu<span>Quest</span>
+              <span class="logo-sub">Scuderia Tifosi Edition</span>
+            </div>
+          </div>
+          <p>
+            Modul pembelajaran terstruktur untuk membantu persiapan ulangan harian, ujian sekolah, dan eksplorasi sains balap Formula 1.
+          </p>
+        </div>
+
+        <div class="footer-team">
+          <h4>🏁 Tim Scuderia Tifosi (Tugas Kelompok)</h4>
+          <div class="team-members-list">
+            <span class="team-badge">Tifosi / Hafidz</span>
+            <span class="team-badge">Afif</span>
+            <span class="team-badge">Intan</span>
+            <span class="team-badge">Deka</span>
+            <span class="team-badge">Taqiy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 EduQuest - Scuderia Tifosi Edition. Dibuat dengan HTML5, CSS3, &amp; Vanilla JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/materi.js"></script>
+</body>
+</html>

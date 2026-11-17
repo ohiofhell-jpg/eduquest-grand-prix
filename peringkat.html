@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Papan Peringkat Grand Prix - EduQuest | Scuderia Tifosi Edition</title>
+  <meta name="description" content="Papan peringkat Grand Prix EduQuest. Pantau poin kejuaraan, akurasi lap, dan posisi podium balapmu.">
+  
+  <!-- Google Fonts: Poppins & Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- CSS Utama -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="logo">
+        <span class="logo-badge">🏎️</span>
+        <div class="logo-text">
+          Edu<span>Quest</span>
+          <span class="logo-sub">Scuderia Tifosi Edition</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">🏠 Beranda</a>
+        <a href="materi.html" class="nav-link">📚 Materi Belajar</a>
+        <a href="kuis.html" class="nav-link">🎯 Kuis Interaktif</a>
+        <a href="peringkat.html" class="nav-link active">🏆 Peringkat GP</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="themeToggleBtn" class="theme-toggle" aria-label="Ganti Tema Visual" title="Ganti Mode Tema (Nightlight / Ferrari / Sunset)">
+          🏎️
+        </button>
+        <button id="hamburgerBtn" class="hamburger" aria-label="Buka Menu Navigasi">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== KONTEN PERINGKAT ==================== -->
+  <main class="peringkat-section">
+    <div class="container">
+      
+      <!-- Section Header -->
+      <div class="section-header" style="text-align: left; margin-bottom: 2.2rem;">
+        <span class="badge badge-ferrari" style="margin-bottom: 0.6rem;">🏁 DRIVERS' CHAMPIONSHIP STANDINGS</span>
+        <h1 class="section-title">🏆 Papan Peringkat Grand Prix</h1>
+        <p class="section-subtitle" style="margin: 0;">
+          Daftar 10 pembalap terbaik dengan perolehan poin kejuaraan dan akurasi lap tertinggi di peramban ini.
+        </p>
+      </div>
+
+      <!-- Ringkasan Statistik F1 -->
+      <section class="stats-summary-grid" aria-label="Ringkasan Statistik Balapan">
+        <div class="summary-card">
+          <div class="summary-icon">🏁</div>
+          <div class="summary-info">
+            <h3 id="statTotalGames">0</h3>
+            <p>Total Grand Prix Dimainkan</p>
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-icon icon-cyan">⚡</div>
+          <div class="summary-info">
+            <h3 id="statHighestScore">0</h3>
+            <p>Rekor Poin Tertinggi</p>
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-icon icon-green">📈</div>
+          <div class="summary-info">
+            <h3 id="statAverageScore">0</h3>
+            <p>Rata-rata Poin Balapan</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Kontrol & Filter -->
+      <section class="leaderboard-controls" aria-label="Filter Leaderboard">
+        <div class="leaderboard-filters">
+          <label for="categoryFilterSelect" style="font-size: 0.95rem; font-weight: 700; color: var(--text-secondary);">
+            Filter Kategori Balap:
+          </label>
+          <select id="categoryFilterSelect" class="form-select" style="padding: 0.55rem 1.1rem; width: auto; min-width: 200px;">
+            <option value="Semua">Semua Kategori</option>
+            <option value="Fisika">🍎 Fisika Dinamika</option>
+            <option value="Kimia">🧪 Kimia Material</option>
+            <option value="Matematika Wajib">📐 Matematika Wajib</option>
+            <option value="Matematika Lanjut">📈 Matematika Lanjut &amp; Telemetri</option>
+            <option value="TIK & Koding">💻 TIK &amp; Algoritma ECU</option>
+          </select>
+        </div>
+
+        <div>
+          <button id="clearDataBtn" class="btn btn-danger btn-sm">
+            🗑️ Hapus Semua Riwayat Poin
+          </button>
+        </div>
+      </section>
+
+      <!-- Tabel Leaderboard -->
+      <section id="leaderboardTableContainer" class="leaderboard-table-wrapper" aria-label="Tabel 10 Besar">
+        <table class="leaderboard-table">
+          <thead>
+            <tr>
+              <th style="text-align: center; width: 70px;">Grid</th>
+              <th>Pembalap / Siswa</th>
+              <th>Poin Balap (Pts)</th>
+              <th>Akurasi Lap</th>
+              <th>Kategori / Mapel</th>
+              <th>Waktu Balapan</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboardTableBody">
+            <!-- Diisi secara dinamis oleh peringkat.js -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Empty State -->
+      <section id="emptyLeaderboardState" class="empty-state" style="display: none;">
+        <div class="empty-state-icon">🏎️</div>
+        <h3>Belum Ada Rekor Balapan</h3>
+        <p>Jadilah yang pertama menginjak garis start, selesaikan 10 lap soal kuis, dan raih posisi teratas di podium kejuaraan!</p>
+        <a href="kuis.html" class="btn btn-primary">
+          🚀 Mulai Balapan Sekarang
+        </a>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==================== MODAL KONFIRMASI HAPUS ==================== -->
+  <div id="confirmClearModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <div class="modal-icon">⚠️</div>
+      <h3 class="modal-title" id="modalTitle">Reset Papan Peringkat?</h3>
+      <p class="modal-desc">
+        Tindakan ini akan mengosongkan seluruh rekor poin kejuaraan dan riwayat lap kuis dari peramban secara permanen.
+      </p>
+      <div class="modal-actions">
+        <button id="modalCancelBtn" class="btn btn-secondary">
+          Batal
+        </button>
+        <button id="modalConfirmBtn" class="btn btn-danger">
+          Ya, Reset Data
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-badge">🏎️</span>
+            <div class="logo-text">
+              Edu<span>Quest</span>
+              <span class="logo-sub">Scuderia Tifosi Edition</span>
+            </div>
+          </div>
+          <p>
+            Penyimpanan skor berbasis browser LocalStorage tanpa backend, aman, cepat, dan privasi terjaga di perangkatmu.
+          </p>
+        </div>
+
+        <div class="footer-team">
+          <h4>🏁 Tim Scuderia Tifosi (Tugas Kelompok)</h4>
+          <div class="team-members-list">
+            <span class="team-badge">Tifosi / Hafidz</span>
+            <span class="team-badge">Afif</span>
+            <span class="team-badge">Intan</span>
+            <span class="team-badge">Deka</span>
+            <span class="team-badge">Taqiy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 EduQuest - Scuderia Tifosi Edition. Dibuat dengan HTML5, CSS3, &amp; Vanilla JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/peringkat.js"></script>
+</body>
+</html>

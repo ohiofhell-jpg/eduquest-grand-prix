@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduQuest - Scuderia Tifosi Edition | Platform Belajar Interaktif Sains & Koding</title>
+  <meta name="description" content="EduQuest Scuderia Tifosi Edition membantu pelajar SMP dan SMA belajar Fisika, Kimia, Matematika, dan Koding dengan interaktif, seru, dan terinspirasi sains kecepatan F1.">
+  
+  <!-- Google Fonts: Poppins & Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- CSS Utama -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="logo">
+        <span class="logo-badge">🏎️</span>
+        <div class="logo-text">
+          Edu<span>Quest</span>
+          <span class="logo-sub">Scuderia Tifosi Edition</span>
+        </div>
+      </a>
+
+      <!-- Menu Navigasi Desktop & Mobile Drawer -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link active">🏠 Beranda</a>
+        <a href="materi.html" class="nav-link">📚 Materi Belajar</a>
+        <a href="kuis.html" class="nav-link">🎯 Kuis Interaktif</a>
+        <a href="peringkat.html" class="nav-link">🏆 Peringkat GP</a>
+      </nav>
+
+      <!-- Aksi Navigasi & Tema -->
+      <div class="nav-actions">
+        <button id="themeToggleBtn" class="theme-toggle" aria-label="Ganti Tema Visual" title="Ganti Mode Tema (Nightlight / Ferrari / Sunset)">
+          🏎️
+        </button>
+        <button id="hamburgerBtn" class="hamburger" aria-label="Buka Menu Navigasi">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <main>
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-pill">
+          <span>🏎️</span> Scuderia Tifosi Edition: Sains, Kecepatan &amp; Koding Terdepan
+        </div>
+        <h1 class="hero-title">
+          Belajar Sains &amp; Koding Jadi Lebih <br>
+          <span class="highlight">Cepat, Presisi &amp; Menyenangkan</span>
+        </h1>
+        <p class="hero-subtitle">
+          Kuasai konsep Fisika, Kimia, Matematika (Wajib &amp; Lanjut), serta TIK dan Koding lewat rangkuman ringkas, tips mengingat cerdas, dan kuis uji pemahaman bertempo balap Formula 1!
+        </p>
+        <div class="hero-actions">
+          <a href="materi.html" class="btn btn-primary btn-lg">
+            📖 Mulai Belajar Sekarang
+          </a>
+          <a href="kuis.html" class="btn btn-secondary btn-lg">
+            🎯 Coba Kuis Bertempo Cepat
+          </a>
+        </div>
+
+        <!-- Garis Kecepatan Balap (Italian Racing Stripe) -->
+        <div class="racing-strip" aria-hidden="true"></div>
+
+        <!-- Subject Badges / Chips -->
+        <div class="subject-chips">
+          <span class="subject-chip">🍎 Fisika Dinamika</span>
+          <span class="subject-chip">🧪 Kimia Material &amp; Polimer</span>
+          <span class="subject-chip">📐 Matematika Aljabar</span>
+          <span class="subject-chip">📈 Matematika Kalkulus &amp; Telemetri</span>
+          <span class="subject-chip">💻 TIK &amp; Algoritma ECU</span>
+          <span class="subject-chip">🌐 Koding Web Interaktif</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SCUDERIA STEM SPOTLIGHT ==================== -->
+    <section class="ferrari-spotlight-section">
+      <div class="container">
+        <div class="ferrari-spotlight-card">
+          <div class="spotlight-header">
+            <div>
+              <span class="badge badge-ferrari">🏎️ SCUDERIA STEM SPOTLIGHT</span>
+              <h3 style="margin-top: 0.5rem;">Sains di Balik Kecepatan Mobil Balap Ferrari</h3>
+            </div>
+            <p style="color: var(--text-secondary); max-width: 520px; font-size: 0.95rem;">
+              Bagaimana Fisika, Kimia, Matematika, dan Koding bersinergi menciptakan mahakarya kecepatan di sirkuit kelas dunia.
+            </p>
+          </div>
+
+          <div class="spotlight-grid">
+            <div class="spotlight-item">
+              <h4>💨 Fisika: Downforce &amp; Inersia</h4>
+              <p>Sayap Ferrari SF-25 menerapkan Hukum III Newton membelokkan udara untuk menghasilkan gaya tekan ke bawah <em>(downforce)</em> ribuan Newton agar mobil menempel di aspal saat menikung pada 250 km/jam.</p>
+            </div>
+            <div class="spotlight-item">
+              <h4>⚡ Fisika: KERS Regenerasi Energi</h4>
+              <p>Menerapkan Hukum Kekekalan Energi: sistem MGU-K menangkap energi kinetik dari pengereman ekstrem dan menyimpannya menjadi dorongan daya baterai 160 HP!</p>
+            </div>
+            <div class="spotlight-item">
+              <h4>🔬 Kimia: Serat Karbon &amp; Ban</h4>
+              <p>Ikatan kovalen atom karbon (¹²₆C) menghasilkan sasis monokok yang luar biasa kuat namun ringan (±798 kg). Karet ban Pirelli melalui vulkanisasi sulfur agar tahan panas 110°C.</p>
+            </div>
+            <div class="spotlight-item">
+              <h4>📈 Kalkulus: Telemetri Kecepatan</h4>
+              <p>Insinyur Ferrari menggunakan turunan fungsi kecepatan $a(t) = v'(t)$ untuk menganalisis titik deselerasi optimal dari 320 km/jam ke 80 km/jam dalam 1,8 detik!</p>
+            </div>
+            <div class="spotlight-item">
+              <h4>💻 Koding: ECU &amp; Algoritma DRS</h4>
+              <p>Unit Kontrol Elektronik (ECU) menjalankan jutaan baris kode per detik, memproses 300+ sensor real-time untuk mengatur campuran bahan bakar dan aktivasi sayap DRS.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FITUR UTAMA ==================== -->
+    <section class="features-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Eksplorasi Fitur EduQuest</h2>
+          <p class="section-subtitle">Dirancang khusus untuk membantu belajar mandiri maupun kelompok dengan metode yang efektif, interaktif, dan penuh semangat.</p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Fitur 1: Materi -->
+          <article class="feature-card">
+            <div>
+              <div class="feature-icon-wrapper">📚</div>
+              <h3>Modul Materi Interaktif</h3>
+              <p>10 bab lengkap dengan tujuan belajar, rangkuman konsep inti, contoh rumus praktis, studi kasus F1, dan tips mengingat cerdas.</p>
+            </div>
+            <div>
+              <a href="materi.html" class="btn btn-outline btn-sm">Buka Halaman Materi &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Fitur 2: Kuis -->
+          <article class="feature-card">
+            <div>
+              <div class="feature-icon-wrapper">🎯</div>
+              <h3>Kuis Tantangan Waktu F1</h3>
+              <p>Uji pemahamanmu dalam 10 soal acak dengan batas waktu 20 detik per soal, indikator Tachometer Rev-LEDs, DRS Speed Bonus, dan pembahasan instan.</p>
+            </div>
+            <div>
+              <a href="kuis.html" class="btn btn-outline btn-sm">Mulai Sesi Kuis &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Fitur 3: Peringkat -->
+          <article class="feature-card">
+            <div>
+              <div class="feature-icon-wrapper">🏆</div>
+              <h3>Papan Peringkat Grand Prix</h3>
+              <p>Pantau rekor skor tertinggimu, bandingkan prestasi dengan teman sekelas, dan raih podium P1 di Top 10 Scuderia Leaderboard.</p>
+            </div>
+            <div>
+              <a href="peringkat.html" class="btn btn-outline btn-sm">Lihat Peringkat &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PERKS ==================== -->
+    <section class="perks-section">
+      <div class="container">
+        <div class="perks-grid">
+          <div class="perk-item">
+            <div class="perk-icon">⚡</div>
+            <div>
+              <h4>Cepat &amp; Mandiri</h4>
+              <p>100% Client-side tanpa server, hemat kuota dan bisa langsung dijalankan di peramban.</p>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">🏎️</div>
+            <div>
+              <h4>Scuderia Theme Switcher</h4>
+              <p>Beralih bebas antara Mode Nightlight Ajaib, Mode Balap Ferrari, dan Mode Siang.</p>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">💾</div>
+            <div>
+              <h4>Simpan Otomatis</h4>
+              <p>Progres belajar dan rekor kuis otomatis tersimpan aman di penyimpanan lokal.</p>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">📱</div>
+            <div>
+              <h4>Responsif &amp; Presisi</h4>
+              <p>Tampilan optimal di smartphone 360px, tablet, hingga monitor desktop lebar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-badge">🏎️</span>
+            <div class="logo-text">
+              Edu<span>Quest</span>
+              <span class="logo-sub">Scuderia Tifosi Edition</span>
+            </div>
+          </div>
+          <p>
+            Aplikasi media pembelajaran interaktif berbasis web untuk mempermudah siswa memahami sains, matematika, dan logika pemrograman melalui studi kasus kecepatan nyata.
+          </p>
+        </div>
+
+        <div class="footer-team">
+          <h4>🏁 Tim Scuderia Tifosi (Tugas Kelompok)</h4>
+          <div class="team-members-list">
+            <span class="team-badge">Tifosi / Hafidz</span>
+            <span class="team-badge">Afif</span>
+            <span class="team-badge">Intan</span>
+            <span class="team-badge">Deka</span>
+            <span class="team-badge">Taqiy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 EduQuest - Scuderia Tifosi Edition. Dibuat dengan HTML5, CSS3, &amp; Vanilla JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,2128 @@
+/* ==========================================================================
+   EduQuest - Stylesheet Utama (Scuderia Ferrari & Magical Nightlight Edition)
+   Inspirasi Desain:
+   1. Magical Forest Nightlight (Deep Indigo, Sunset Peach, Lantern Amber Glow)
+   2. Rainbow Learning Spectrum (Twinkling Night Sky + Vibrant Educational Arc)
+   3. Scuderia Ferrari F1 & Tifosi Racing Spirit:
+      - Rosso Corsa (#e10600) & Giallo Modena (#ffea00)
+      - Carbon Fiber Weave Texture & Aerodynamic Racing Stripes
+      - F1 Tachometer Rev-LEDs (Green -> Amber -> Shift Red)
+      - DRS Speed Meter & Checkered Flag Finish Line
+   Murni CSS3 & CSS Variables (Vanilla & Responsif)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS VARIABLES (Nightlight Default + Scuderia Ferrari + Sunset Light)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Default: Magical Twilight Nightlight */
+  --bg-deep: #080a14;
+  --bg-sky: #0e1124;
+  --bg-surface: #141833;
+  --bg-card: rgba(23, 27, 56, 0.82);
+  --bg-card-solid: #171b38;
+  --bg-card-hover: rgba(33, 39, 78, 0.92);
+  --bg-subtle: #1e2448;
+
+  /* Aksen Utama Nightlight */
+  --accent-primary: #f59e0b;
+  --accent-primary-hover: #fb923c;
+  --accent-glow: rgba(245, 158, 11, 0.38);
+  --accent-secondary: #a855f7;
+  --accent-cyan: #38bdf8;
+  --accent-emerald: #10b981;
+
+  /* Ferrari Brand Colors */
+  --ferrari-red: #e10600;
+  --ferrari-red-glow: rgba(225, 6, 0, 0.45);
+  --ferrari-red-dark: #990000;
+  --ferrari-yellow: #ffea00;
+  --ferrari-yellow-glow: rgba(255, 234, 0, 0.4);
+  --ferrari-carbon: #101218;
+
+  /* Pelangi EduQuest */
+  --rainbow-gradient: linear-gradient(
+    135deg,
+    #f43f5e 0%,
+    #fb923c 20%,
+    #facc15 40%,
+    #10b981 60%,
+    #38bdf8 80%,
+    #a855f7 100%
+  );
+
+  /* Racing Stripe Gradient */
+  --racing-stripe: linear-gradient(
+    90deg,
+    #e10600 0%,
+    #e10600 65%,
+    #ffffff 65%,
+    #ffffff 75%,
+    #009246 75%,
+    #009246 100%
+  );
+
+  /* Status Warna Umpan Balik */
+  --success: #10b981;
+  --success-bg: rgba(16, 185, 129, 0.18);
+  --error: #f43f5e;
+  --error-bg: rgba(244, 63, 94, 0.18);
+  --warning: #f59e0b;
+
+  /* Tipografi & Kontras */
+  --text-main: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #8e9bb5;
+  --border-color: rgba(168, 85, 247, 0.2);
+  --border-accent: rgba(245, 158, 11, 0.35);
+
+  /* Efek Bayangan */
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 20px 45px rgba(0, 0, 0, 0.6);
+
+  /* Radius & Transisi */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  --transition-fast: 0.18s ease;
+  --transition-normal: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --container-max: 1140px;
+}
+
+/* ==========================================
+   TEMA KHUSUS: SCUDERIA FERRARI RACING MODE 🏎️
+   Diaktifkan via data-theme="ferrari"
+   ========================================== */
+[data-theme="ferrari"] {
+  --bg-deep: #0a0b0e;
+  --bg-sky: #111318;
+  --bg-surface: #171922;
+  --bg-card: rgba(22, 25, 35, 0.88);
+  --bg-card-solid: #171922;
+  --bg-card-hover: rgba(36, 40, 56, 0.95);
+  --bg-subtle: #242938;
+
+  --accent-primary: #e10600;
+  --accent-primary-hover: #ff2a24;
+  --accent-glow: var(--ferrari-red-glow);
+  --accent-secondary: #ffea00;
+  --accent-cyan: #38bdf8;
+  --accent-emerald: #10b981;
+
+  --border-color: rgba(225, 6, 0, 0.3);
+  --border-accent: rgba(255, 234, 0, 0.5);
+
+  --text-main: #ffffff;
+  --text-secondary: #d1d5db;
+  --text-muted: #9ca3af;
+}
+
+/* Mode Siang Hangat (Sunset Warm Light) */
+[data-theme="light"] {
+  --bg-deep: #fcf9f2;
+  --bg-sky: #f7f1e5;
+  --bg-surface: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.94);
+  --bg-card-solid: #ffffff;
+  --bg-card-hover: #fff9ef;
+  --bg-subtle: #f0e6d6;
+  --accent-primary: #e10600;
+  --accent-primary-hover: #b80500;
+  --accent-glow: rgba(225, 6, 0, 0.2);
+  --text-main: #181e30;
+  --text-secondary: #424e6b;
+  --text-muted: #6b7794;
+  --border-color: rgba(225, 6, 0, 0.2);
+  --border-accent: rgba(245, 158, 11, 0.45);
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET & BASE STYLES + DYNAMIC AMBIENT BACKGROUND
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Poppins', 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+
+  /* Background Ambient */
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(225, 6, 0, 0.14) 0%, transparent 60%),
+    radial-gradient(circle at 15% 30%, rgba(245, 158, 11, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 70%, rgba(168, 85, 247, 0.10) 0%, transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(225, 6, 0, 0.10) 0%, transparent 55%);
+  background-attachment: fixed;
+}
+
+/* Carbon Fiber Texture Overlay saat Mode Ferrari */
+[data-theme="ferrari"] body {
+  background-image: 
+    radial-gradient(circle at 50% -10%, rgba(225, 6, 0, 0.35) 0%, transparent 70%),
+    radial-gradient(circle at 85% 60%, rgba(255, 234, 0, 0.12) 0%, transparent 45%),
+    linear-gradient(45deg, rgba(20, 22, 30, 0.7) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(20, 22, 30, 0.7) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(20, 22, 30, 0.7) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(20, 22, 30, 0.7) 75%);
+  background-size: 100% 100%, 100% 100%, 16px 16px, 16px 16px, 16px 16px, 16px 16px;
+}
+
+/* Efek Bintang Gemerlap Malam */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(1.5px 1.5px at 12% 18%, rgba(255, 255, 255, 0.75), transparent),
+    radial-gradient(2px 2px at 28% 45%, rgba(251, 191, 36, 0.8), transparent),
+    radial-gradient(1.5px 1.5px at 52% 22%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(2.5px 2.5px at 78% 28%, rgba(225, 6, 0, 0.75), transparent),
+    radial-gradient(1.5px 1.5px at 88% 12%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(2px 2px at 22% 75%, rgba(56, 189, 248, 0.7), transparent),
+    radial-gradient(2px 2px at 88% 88%, rgba(255, 234, 0, 0.7), transparent);
+  background-size: 600px 600px;
+  opacity: 0.65;
+  pointer-events: none;
+  z-index: 0;
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.45; }
+  100% { opacity: 0.85; }
+}
+
+main, header, footer {
+  position: relative;
+  z-index: 1;
+}
+
+img, svg {
+  max-width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+a:hover {
+  color: var(--accent-primary-hover);
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   3. HEADER & NAVBAR (FROSTED GLASSMORPHISM + RACING DNA)
+   -------------------------------------------------------------------------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(14, 17, 36, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 2px solid var(--border-color);
+  transition: all var(--transition-normal);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="ferrari"] .navbar {
+  background-color: rgba(16, 18, 26, 0.94);
+  border-bottom: 2px solid var(--ferrari-red);
+  box-shadow: 0 4px 25px rgba(225, 6, 0, 0.25);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 74px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 800;
+  font-size: 1.45rem;
+  color: var(--text-main);
+  letter-spacing: -0.3px;
+}
+
+.logo-badge {
+  background: linear-gradient(135deg, #e10600, #ffea00);
+  color: #0b0d1b;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.4rem;
+  box-shadow: 0 0 18px var(--accent-glow);
+  transform: rotate(-3deg);
+  transition: transform var(--transition-fast);
+}
+
+.logo:hover .logo-badge {
+  transform: rotate(4deg) scale(1.1);
+}
+
+.logo-text span {
+  background: linear-gradient(135deg, var(--accent-primary), #fb923c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="ferrari"] .logo-text span {
+  background: linear-gradient(135deg, #e10600, #ffea00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-sub {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--ferrari-yellow);
+  display: block;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.nav-link:hover {
+  color: var(--text-main);
+  background-color: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.nav-link.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #e10600, #b80500);
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(225, 6, 0, 0.4);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.theme-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-main);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-toggle:hover {
+  background-color: var(--bg-card-hover);
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-sm), 0 0 15px var(--accent-glow);
+  transform: scale(1.08);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 2.5px;
+  background-color: var(--text-main);
+  border-radius: 2px;
+  transition: all var(--transition-normal);
+}
+
+.hamburger.is-active span:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+.hamburger.is-active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.is-active span:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* --------------------------------------------------------------------------
+   4. BUTTONS & UI COMPONENTS
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.6rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #e10600 0%, #b80500 70%, #800000 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 234, 0, 0.4);
+  box-shadow: 0 4px 18px rgba(225, 6, 0, 0.5), 0 0 12px rgba(255, 234, 0, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 28px rgba(225, 6, 0, 0.7), 0 0 20px rgba(255, 234, 0, 0.5);
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(8px);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  color: var(--ferrari-yellow);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent-primary);
+  border: 1.5px solid var(--accent-primary);
+}
+
+.btn-outline:hover {
+  background-color: rgba(225, 6, 0, 0.15);
+  color: var(--ferrari-yellow);
+  border-color: var(--ferrari-yellow);
+  box-shadow: 0 0 15px rgba(225, 6, 0, 0.3);
+}
+
+.btn-danger {
+  background-color: var(--error-bg);
+  color: #fca5a5;
+  border: 1px solid rgba(244, 63, 94, 0.4);
+}
+
+.btn-danger:hover {
+  background-color: var(--error);
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(244, 63, 94, 0.4);
+}
+
+.btn-sm {
+  padding: 0.45rem 1rem;
+  font-size: 0.86rem;
+}
+
+.btn-lg {
+  padding: 0.95rem 2.2rem;
+  font-size: 1.1rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.4px;
+}
+
+.badge-ferrari {
+  background: rgba(225, 6, 0, 0.2);
+  color: #ffea00;
+  border: 1px solid #e10600;
+  box-shadow: 0 0 10px rgba(225, 6, 0, 0.3);
+}
+
+.badge-amber {
+  background: rgba(245, 158, 11, 0.18);
+  color: #fde68a;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.badge-cyan {
+  background: rgba(56, 189, 248, 0.15);
+  color: #7dd3fc;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+}
+
+.badge-green {
+  background: var(--success-bg);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.badge-indigo {
+  background: rgba(168, 85, 247, 0.18);
+  color: #d8b4fe;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   5. BERANDA (index.html) - HERO & SCUDERIA SHOWCASE
+   -------------------------------------------------------------------------- */
+.hero-section {
+  padding: 4.8rem 0 3.2rem;
+  text-align: center;
+  position: relative;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1.4rem;
+  background: rgba(22, 25, 38, 0.9);
+  border: 1.5px solid var(--ferrari-red);
+  color: #ffea00;
+  border-radius: var(--radius-full);
+  font-size: 0.94rem;
+  font-weight: 800;
+  margin-bottom: 1.8rem;
+  box-shadow: 0 0 20px rgba(225, 6, 0, 0.35);
+  animation: floatSoft 4s ease-in-out infinite;
+}
+
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1.4rem;
+  letter-spacing: -0.6px;
+}
+
+.hero-title .highlight {
+  background: linear-gradient(135deg, #ffea00 0%, #e10600 50%, #f43f5e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  text-shadow: 0 0 35px rgba(225, 6, 0, 0.35);
+}
+
+.hero-subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  color: var(--text-secondary);
+  max-width: 740px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+/* F1 Racing Strip (Italian Tricolore & Ferrari Red) */
+.racing-strip {
+  width: 100%;
+  max-width: 780px;
+  height: 6px;
+  margin: 3.2rem auto 2.2rem;
+  background: linear-gradient(90deg, #e10600 0%, #e10600 60%, #ffea00 75%, #ffffff 88%, #009246 100%);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 22px rgba(225, 6, 0, 0.6);
+  position: relative;
+}
+
+.racing-strip::after {
+  content: "🏎️";
+  position: absolute;
+  top: -16px;
+  right: -5px;
+  font-size: 1.4rem;
+  animation: carSprint 3s infinite linear alternate;
+}
+
+@keyframes carSprint {
+  0% { transform: translateX(-15px); }
+  100% { transform: translateX(0px); }
+}
+
+/* Subjek Chips */
+.subject-chips {
+  display: flex;
+  justify-content: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.subject-chip {
+  padding: 0.55rem 1.2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.subject-chip:hover {
+  border-color: var(--accent-primary);
+  color: var(--ferrari-yellow);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 6px 20px rgba(225, 6, 0, 0.3);
+}
+
+/* Ferrari F1 STEM Spotlight Card */
+.ferrari-spotlight-section {
+  padding: 2.5rem 0 3.5rem;
+}
+
+.ferrari-spotlight-card {
+  background: linear-gradient(135deg, rgba(225, 6, 0, 0.16), rgba(20, 24, 38, 0.92));
+  border: 2px solid rgba(225, 6, 0, 0.4);
+  border-radius: var(--radius-lg);
+  padding: 2.4rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 35px rgba(225, 6, 0, 0.25);
+}
+
+.ferrari-spotlight-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: var(--ferrari-red);
+}
+
+.spotlight-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.spotlight-header h3 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.4rem;
+}
+
+.spotlight-item {
+  background: rgba(10, 12, 20, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 1.3rem;
+  transition: transform var(--transition-fast);
+}
+
+.spotlight-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--ferrari-red);
+}
+
+.spotlight-item h4 {
+  font-size: 1.05rem;
+  color: var(--ferrari-yellow);
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+}
+
+.spotlight-item p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* Feature Cards Grid */
+.features-section {
+  padding: 3.5rem 0 5.5rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3.2rem;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.7rem;
+  letter-spacing: -0.4px;
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.4rem 2rem;
+  position: relative;
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #e10600, #ffea00);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  background-color: var(--bg-card-hover);
+  border-color: var(--ferrari-red);
+  box-shadow: var(--shadow-md), 0 0 25px rgba(225, 6, 0, 0.35);
+}
+
+.feature-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: rgba(225, 6, 0, 0.15);
+  color: #ffea00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 20px rgba(225, 6, 0, 0.25);
+}
+
+.feature-card h3 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  margin-bottom: 1.6rem;
+  line-height: 1.65;
+  flex-grow: 1;
+}
+
+/* --------------------------------------------------------------------------
+   6. MATERI BELAJAR (materi.html)
+   -------------------------------------------------------------------------- */
+.materi-header-section {
+  padding: 3rem 0 2.5rem;
+}
+
+.progress-banner {
+  background: linear-gradient(135deg, rgba(23, 27, 56, 0.95), rgba(30, 24, 66, 0.95));
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem 2.2rem;
+  margin-bottom: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.8rem;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow-md);
+}
+
+.progress-info h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.progress-info p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.progress-bar-container {
+  flex: 1;
+  min-width: 250px;
+  max-width: 480px;
+}
+
+.progress-bar-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.progress-bar {
+  height: 12px;
+  background-color: var(--bg-subtle);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #e10600, #ffea00);
+  border-radius: var(--radius-full);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 12px rgba(225, 6, 0, 0.6);
+}
+
+/* Filter & Pencarian Materi */
+.filter-search-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin-bottom: 2.8rem;
+}
+
+.search-box {
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.95rem 1.4rem 0.95rem 3.1rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  color: var(--text-main);
+  font-size: 1rem;
+  backdrop-filter: blur(8px);
+  transition: all var(--transition-fast);
+}
+
+.search-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 18px var(--accent-glow);
+  background-color: var(--bg-card-hover);
+}
+
+.search-icon {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 0.7rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+}
+
+.category-tab {
+  padding: 0.55rem 1.25rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.category-tab:hover {
+  background-color: var(--bg-card-hover);
+  color: var(--text-main);
+  border-color: var(--accent-primary);
+}
+
+.category-tab.active {
+  background: linear-gradient(135deg, #e10600, #b80500);
+  color: #ffffff;
+  border-color: #e10600;
+  box-shadow: 0 4px 14px rgba(225, 6, 0, 0.4);
+}
+
+/* Materi Accordion List */
+.materi-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 4.5rem;
+}
+
+.materi-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.materi-card.completed {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+}
+
+.materi-card-header {
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color var(--transition-fast);
+}
+
+.materi-card-header:hover {
+  background-color: var(--bg-card-hover);
+}
+
+.materi-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  flex: 1;
+}
+
+.materi-card-icon {
+  font-size: 2.2rem;
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-md);
+  background: rgba(225, 6, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 15px rgba(225, 6, 0, 0.2);
+}
+
+.materi-header-text h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--text-main);
+}
+
+.materi-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.materi-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.status-badge-completed {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #6ee7b7;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: var(--success-bg);
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+}
+
+.chevron-icon {
+  transition: transform var(--transition-normal);
+  color: var(--text-muted);
+}
+
+.materi-card.is-open .chevron-icon {
+  transform: rotate(180deg);
+  color: var(--accent-primary);
+}
+
+.materi-card-body {
+  display: none;
+  padding: 2rem;
+  border-top: 1px solid var(--border-color);
+  background: rgba(11, 14, 30, 0.75);
+  animation: fadeIn 0.28s ease;
+}
+
+.materi-card.is-open .materi-card-body {
+  display: block;
+}
+
+.materi-section-block {
+  margin-bottom: 1.8rem;
+}
+
+.materi-section-block h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffea00;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tujuan-list {
+  padding-left: 1.4rem;
+  color: var(--text-secondary);
+  font-size: 0.96rem;
+}
+
+.tujuan-list li {
+  margin-bottom: 0.5rem;
+}
+
+.poin-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.poin-card {
+  background-color: var(--bg-card);
+  border-left: 4px solid var(--accent-primary);
+  padding: 1.1rem 1.3rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.poin-card h5 {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-main);
+}
+
+.poin-card p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.ilustrasi-box {
+  background-color: #080a14;
+  border: 1px solid rgba(225, 6, 0, 0.3);
+  border-radius: var(--radius-md);
+  padding: 1.3rem;
+  margin-top: 0.6rem;
+}
+
+.ilustrasi-label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.6px;
+}
+
+.ilustrasi-content {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: #f1f5f9;
+  white-space: pre-wrap;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--ferrari-red);
+}
+
+.tips-mengingat-box {
+  background: linear-gradient(135deg, rgba(225, 6, 0, 0.15), rgba(255, 234, 0, 0.08));
+  border: 1px dashed var(--ferrari-yellow);
+  border-radius: var(--radius-md);
+  padding: 1.3rem 1.5rem;
+  margin-top: 1.4rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
+.tips-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.tips-mengingat-box h5 {
+  font-size: 1rem;
+  color: #ffea00;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+}
+
+.tips-mengingat-box p {
+  font-size: 0.93rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.materi-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   7. KUIS INTERAKTIF (kuis.html) - F1 TACHOMETER & SPEED GAUGE
+   -------------------------------------------------------------------------- */
+.quiz-section {
+  padding: 3.5rem 0 5.5rem;
+}
+
+.quiz-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quiz-setup-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.8rem 2.4rem;
+  box-shadow: var(--shadow-lg), 0 0 35px rgba(225, 6, 0, 0.18);
+  backdrop-filter: blur(14px);
+}
+
+.quiz-setup-header {
+  text-align: center;
+  margin-bottom: 2.2rem;
+}
+
+.quiz-setup-header h2 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.4px;
+}
+
+.quiz-setup-header p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.6rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.96rem;
+  font-weight: 700;
+  margin-bottom: 0.55rem;
+  color: var(--text-main);
+}
+
+.form-input, .form-select {
+  width: 100%;
+  padding: 0.95rem 1.2rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.form-input:focus, .form-select:focus {
+  border-color: var(--ferrari-red);
+  box-shadow: 0 0 16px var(--ferrari-red-glow);
+  background-color: var(--bg-card-solid);
+}
+
+.form-error-msg {
+  color: #f87171;
+  font-size: 0.88rem;
+  margin-top: 0.45rem;
+  font-weight: 600;
+  display: none;
+}
+
+.quiz-info-pills {
+  display: flex;
+  gap: 0.85rem;
+  margin: 1.8rem 0 2.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.info-pill {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  padding: 0.45rem 1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Arena Kuis */
+.quiz-arena {
+  display: none;
+}
+
+.quiz-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.quiz-meta-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.quiz-score-badge {
+  background: rgba(225, 6, 0, 0.2);
+  border: 1.5px solid var(--ferrari-red);
+  color: #ffea00;
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 0.95rem;
+  box-shadow: 0 0 14px var(--ferrari-red-glow);
+}
+
+/* F1 Tachometer Timer & Rev Counter */
+.tachometer-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: #0b0d14;
+  padding: 0.4rem 1.1rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border-color);
+}
+
+.tachometer-leds {
+  display: flex;
+  gap: 4px;
+}
+
+.rev-led {
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  background-color: #2a2e3d;
+  transition: all 0.2s ease;
+}
+
+.rev-led.active-green {
+  background-color: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.rev-led.active-yellow {
+  background-color: #ffea00;
+  box-shadow: 0 0 8px #ffea00;
+}
+
+.rev-led.active-red {
+  background-color: #e10600;
+  box-shadow: 0 0 10px #e10600;
+  animation: pulseShift 0.4s infinite alternate;
+}
+
+@keyframes pulseShift {
+  from { opacity: 0.6; }
+  to { opacity: 1; transform: scaleY(1.2); }
+}
+
+.timer-text {
+  font-size: 1.25rem;
+  color: #ffea00;
+  min-width: 38px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+}
+
+.timer-critical {
+  color: #e10600 !important;
+  text-shadow: 0 0 14px rgba(225, 6, 0, 0.8) !important;
+}
+
+.question-progress {
+  height: 8px;
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-full);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.question-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #e10600, #ffea00);
+  width: 10%;
+  transition: width 0.35s ease;
+  box-shadow: 0 0 12px rgba(225, 6, 0, 0.6);
+}
+
+.question-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.4rem;
+  margin-bottom: 1.8rem;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(12px);
+  position: relative;
+}
+
+.question-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.55;
+  color: var(--text-main);
+  margin-bottom: 2rem;
+}
+
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.option-btn {
+  width: 100%;
+  text-align: left;
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  transition: all var(--transition-fast);
+  color: var(--text-main);
+  font-size: 1.02rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.option-btn:hover:not(:disabled) {
+  background-color: var(--bg-card-hover);
+  border-color: var(--ferrari-red);
+  transform: translateX(6px);
+  box-shadow: 0 4px 15px rgba(225, 6, 0, 0.25);
+}
+
+.option-key {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.option-text {
+  flex-grow: 1;
+}
+
+.option-btn.correct {
+  background-color: rgba(16, 185, 129, 0.22) !important;
+  border-color: var(--success) !important;
+  color: #a7f3d0 !important;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
+}
+
+.option-btn.correct .option-key {
+  background-color: var(--success);
+  color: #0b0d1a;
+  border-color: var(--success);
+}
+
+.option-btn.wrong {
+  background-color: rgba(225, 6, 0, 0.22) !important;
+  border-color: var(--ferrari-red) !important;
+  color: #fecaca !important;
+  box-shadow: 0 0 15px rgba(225, 6, 0, 0.3);
+}
+
+.option-btn.wrong .option-key {
+  background-color: var(--ferrari-red);
+  color: #ffffff;
+  border-color: var(--ferrari-red);
+}
+
+.option-btn:disabled {
+  cursor: default;
+}
+
+.feedback-box {
+  display: none;
+  background: rgba(8, 10, 20, 0.9);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-top: 1.8rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.feedback-status {
+  font-size: 1.15rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.feedback-status.correct {
+  color: #6ee7b7;
+}
+
+.feedback-status.wrong {
+  color: #f87171;
+}
+
+.feedback-penjelasan {
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.quiz-arena-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.8rem;
+}
+
+/* Hasil Kuis / Podium Finish */
+.quiz-result-card {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 3.2rem 2.4rem;
+  text-align: center;
+  box-shadow: var(--shadow-lg), 0 0 35px rgba(225, 6, 0, 0.25);
+  backdrop-filter: blur(14px);
+  animation: scaleUp 0.35s ease;
+}
+
+.result-badge-icon {
+  font-size: 4.2rem;
+  line-height: 1;
+  margin-bottom: 1.4rem;
+  filter: drop-shadow(0 0 20px rgba(225, 6, 0, 0.5));
+}
+
+.result-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+}
+
+.result-motivation {
+  font-size: 1.18rem;
+  color: #ffea00;
+  margin-bottom: 2.2rem;
+  font-weight: 700;
+}
+
+.result-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+  margin-bottom: 2.4rem;
+}
+
+.stat-box {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+}
+
+.stat-val {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--text-main);
+  margin-bottom: 0.3rem;
+}
+
+.stat-val.highlight {
+  color: var(--ferrari-yellow);
+  text-shadow: 0 0 15px rgba(255, 234, 0, 0.4);
+}
+
+.stat-label {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   8. SKOR DAN PERINGKAT (peringkat.html) - GRAND PRIX PODIUM
+   -------------------------------------------------------------------------- */
+.peringkat-section {
+  padding: 3.5rem 0 5.5rem;
+}
+
+.stats-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.4rem;
+  margin-bottom: 2.8rem;
+}
+
+.summary-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(10px);
+}
+
+.summary-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background-color: rgba(225, 6, 0, 0.15);
+  color: #ffea00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(225, 6, 0, 0.25);
+}
+
+.summary-icon.icon-cyan {
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.2);
+}
+
+.summary-icon.icon-green {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: var(--success);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.2);
+}
+
+.summary-info h3 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text-main);
+}
+
+.summary-info p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.leaderboard-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.6rem;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+}
+
+.leaderboard-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.leaderboard-table-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(10px);
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.leaderboard-table th {
+  background-color: var(--bg-surface);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 1.2rem 1.6rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.leaderboard-table td {
+  padding: 1.2rem 1.6rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+.leaderboard-table tbody tr {
+  transition: background-color var(--transition-fast);
+}
+
+.leaderboard-table tbody tr:hover {
+  background-color: var(--bg-card-hover);
+}
+
+/* Baris Pemain Terakhir (Tifosi Red Highlight) */
+.leaderboard-table tbody tr.recent-player {
+  background-color: rgba(225, 6, 0, 0.16) !important;
+  border-left: 4px solid var(--ferrari-red);
+}
+
+.rank-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.rank-1 {
+  background: linear-gradient(135deg, #ffd700, #ff9800);
+  color: #1a1a1a;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.55);
+}
+
+.rank-2 {
+  background: linear-gradient(135deg, #f1f5f9, #94a3b8);
+  color: #0f172a;
+  box-shadow: 0 0 14px rgba(226, 232, 240, 0.4);
+}
+
+.rank-3 {
+  background: linear-gradient(135deg, #d97706, #92400e);
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(217, 119, 6, 0.4);
+}
+
+.rank-other {
+  background-color: var(--bg-surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+
+.player-name {
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.recent-tag {
+  font-size: 0.74rem;
+  padding: 0.2rem 0.55rem;
+  background: linear-gradient(135deg, #e10600, #ffea00);
+  color: #080a14;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  box-shadow: 0 0 10px rgba(225, 6, 0, 0.4);
+}
+
+.score-cell {
+  font-weight: 900;
+  color: var(--ferrari-yellow);
+  font-size: 1.15rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 5rem 1.8rem;
+}
+
+.empty-state-icon {
+  font-size: 4rem;
+  margin-bottom: 1.2rem;
+}
+
+.empty-state h3 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+  max-width: 440px;
+  margin: 0 auto 1.8rem;
+  font-size: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   9. MODAL & TOAST
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background-color: rgba(4, 6, 14, 0.85);
+  backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-overlay.is-active {
+  display: flex;
+}
+
+.modal-box {
+  background: var(--bg-card-solid);
+  border: 1.5px solid var(--ferrari-red);
+  border-radius: var(--radius-lg);
+  padding: 2.4rem;
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-lg), 0 0 35px rgba(225, 6, 0, 0.35);
+  animation: scaleUp 0.25s ease;
+}
+
+.modal-icon {
+  font-size: 3rem;
+  margin-bottom: 1.1rem;
+}
+
+.modal-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  margin-bottom: 0.7rem;
+}
+
+.modal-desc {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.9rem;
+  justify-content: center;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  background-color: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 0.95rem 1.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg), 0 0 20px rgba(0, 0, 0, 0.4);
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.25s ease;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.toast.toast-success {
+  border-left: 5px solid var(--success);
+}
+
+.toast.toast-ferrari {
+  border-left: 5px solid var(--ferrari-red);
+  border-right: 5px solid var(--ferrari-yellow);
+}
+
+.toast.toast-error {
+  border-left: 5px solid var(--error);
+}
+
+/* --------------------------------------------------------------------------
+   10. FOOTER
+   -------------------------------------------------------------------------- */
+.footer {
+  margin-top: auto;
+  background-color: rgba(12, 14, 22, 0.98);
+  border-top: 2px solid var(--ferrari-red);
+  padding: 3.5rem 0 2.2rem;
+  position: relative;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--racing-stripe);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  margin-bottom: 2.8rem;
+}
+
+.footer-brand {
+  max-width: 380px;
+}
+
+.footer-brand p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: 0.85rem;
+  line-height: 1.65;
+}
+
+.footer-team {
+  max-width: 500px;
+}
+
+.footer-team h4 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffea00;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.team-members-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.team-badge {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-full);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.team-badge:hover {
+  border-color: var(--ferrari-red);
+  color: #ffea00;
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.8rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+/* --------------------------------------------------------------------------
+   11. ANIMASI & ACCESSIBILITY
+   -------------------------------------------------------------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   12. RESPONSIVE DESIGN (HP, Tablet, Desktop)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .navbar-container {
+    height: 64px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background-color: rgba(14, 17, 36, 0.98);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-color);
+    flex-direction: column;
+    padding: 1.4rem;
+    gap: 0.5rem;
+    transform: translateY(-150%);
+    transition: transform var(--transition-normal);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .nav-menu.is-active {
+    transform: translateY(0);
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .question-card {
+    padding: 1.6rem;
+  }
+
+  .materi-card-header {
+    padding: 1.25rem;
+  }
+
+  .materi-header-left {
+    gap: 0.9rem;
+  }
+
+  .materi-card-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.7rem;
+  }
+
+  .leaderboard-table th:nth-child(4),
+  .leaderboard-table td:nth-child(4),
+  .leaderboard-table th:nth-child(6),
+  .leaderboard-table td:nth-child(6) {
+    display: none;
+  }
+
+  .progress-banner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .progress-bar-container {
+    max-width: 100%;
+  }
+
+  .footer-content {
+    flex-direction: column;
+  }
+}

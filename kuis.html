@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis Interaktif F1 - EduQuest | Scuderia Tifosi Edition</title>
+  <meta name="description" content="Kuis bertempo balap Formula 1 dengan timer Tachometer 20 detik, DRS speed bonus, dan pembahasan instan.">
+  
+  <!-- Google Fonts: Poppins & Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- CSS Utama -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="logo">
+        <span class="logo-badge">🏎️</span>
+        <div class="logo-text">
+          Edu<span>Quest</span>
+          <span class="logo-sub">Scuderia Tifosi Edition</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">🏠 Beranda</a>
+        <a href="materi.html" class="nav-link">📚 Materi Belajar</a>
+        <a href="kuis.html" class="nav-link active">🎯 Kuis Interaktif</a>
+        <a href="peringkat.html" class="nav-link">🏆 Peringkat GP</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="themeToggleBtn" class="theme-toggle" aria-label="Ganti Tema Visual" title="Ganti Mode Tema (Nightlight / Ferrari / Sunset)">
+          🏎️
+        </button>
+        <button id="hamburgerBtn" class="hamburger" aria-label="Buka Menu Navigasi">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN QUIZ SECTION ==================== -->
+  <main class="quiz-section">
+    <div class="container">
+      <div class="quiz-wrapper">
+
+        <!-- ==================== LAYAR 1: SETUP KUIS ==================== -->
+        <section id="quizScreenSetup" class="quiz-setup-card" aria-label="Pengaturan Kuis">
+          <div class="quiz-setup-header">
+            <span style="font-size: 3.2rem; display: block; margin-bottom: 0.5rem;">🏁</span>
+            <h2>Grand Prix Edukasi EduQuest</h2>
+            <p>Jawab 10 soal acak secepat mungkin layaknya pembalap F1 untuk mengumpulkan poin kejuaraan dan bonus kecepatan DRS tertinggi!</p>
+          </div>
+
+          <form id="quizSetupForm">
+            <!-- Input Nama -->
+            <div class="form-group">
+              <label for="playerNameInput" class="form-label">Nama Pembalap / Siswa <span style="color: var(--ferrari-yellow);">*</span></label>
+              <input 
+                type="text" 
+                id="playerNameInput" 
+                class="form-input" 
+                placeholder="Masukkan nama panggilanmu..." 
+                required 
+                maxlength="25"
+                autocomplete="name"
+              >
+              <div id="nameErrorMsg" class="form-error-msg">Nama wajib diisi minimal 2 huruf.</div>
+            </div>
+
+            <!-- Pilih Kategori / Bab -->
+            <div class="form-group">
+              <label for="playerCategorySelect" class="form-label">Pilih Kategori Pelajaran</label>
+              <select id="playerCategorySelect" class="form-select">
+                <option value="Semua">Semua Kategori (Campuran Balap Seru)</option>
+                <option value="Fisika">🍎 Fisika Dinamika</option>
+                <option value="Kimia">🧪 Kimia Material</option>
+                <option value="Matematika Wajib">📐 Matematika Wajib</option>
+                <option value="Matematika Lanjut">📈 Matematika Lanjut &amp; Telemetri</option>
+                <option value="TIK & Koding">💻 TIK &amp; Algoritma ECU</option>
+              </select>
+            </div>
+
+            <!-- Pilih Tingkat Kesulitan -->
+            <div class="form-group">
+              <label for="playerDifficultySelect" class="form-label">Tingkat Kesulitan Sirkuit</label>
+              <select id="playerDifficultySelect" class="form-select">
+                <option value="Semua">Semua Tingkat (Mudah s.d. Sulit)</option>
+                <option value="Mudah">Mudah (Straight Line / Konsep Dasar)</option>
+                <option value="Sedang">Sedang (Chicane / Penerapan Konsep)</option>
+                <option value="Sulit">Sulit (Hairpin Turn / Analisis Hitungan)</option>
+              </select>
+            </div>
+
+            <div class="quiz-info-pills">
+              <span class="info-pill">🎲 10 Lap Soal Acak</span>
+              <span class="info-pill">⏱️ Tachometer 20 Detik</span>
+              <span class="info-pill">⚡ DRS Speed Bonus</span>
+              <span class="info-pill">💡 Ada Pembahasan</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+              🏎️ Gaspol Mulai Balapan Kuis!
+            </button>
+          </form>
+        </section>
+
+        <!-- ==================== LAYAR 2: ARENA KUIS ==================== -->
+        <section id="quizScreenArena" class="quiz-arena" aria-label="Arena Kuis Aktif">
+          <!-- Top Bar -->
+          <div class="quiz-top-bar">
+            <div class="quiz-meta-badge">
+              <span id="questionNumber">Lap 1 dari 10</span>
+              <span class="badge badge-ferrari" id="questionCategoryBadge">Fisika</span>
+              <span class="badge badge-cyan" id="questionDifficultyBadge">Sedang</span>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <span class="quiz-score-badge" id="currentScoreBadge">Pts: 0</span>
+              
+              <!-- F1 Tachometer Timer & Rev Counter -->
+              <div class="tachometer-wrapper" title="Tachometer waktu putaran lap">
+                <div class="tachometer-leds" id="revLedsContainer">
+                  <span class="rev-led active-green"></span>
+                  <span class="rev-led active-green"></span>
+                  <span class="rev-led active-yellow"></span>
+                  <span class="rev-led active-yellow"></span>
+                  <span class="rev-led active-red"></span>
+                </div>
+                <span class="timer-text" id="timerText">20s</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Bar Pertanyaan -->
+          <div class="question-progress">
+            <div class="question-progress-bar" id="questionProgressFill"></div>
+          </div>
+
+          <!-- Card Soal -->
+          <div class="question-card">
+            <h3 class="question-text" id="questionText">Memuat pertanyaan...</h3>
+
+            <!-- Grid 4 Opsi -->
+            <div class="options-grid" id="optionsGrid" role="group" aria-label="Pilihan Jawaban">
+              <!-- Tombol opsi A, B, C, D diisi dinamis oleh kuis.js -->
+            </div>
+
+            <!-- Box Feedback & Pembahasan Singkat -->
+            <div class="feedback-box" id="feedbackBox" aria-live="polite">
+              <div class="feedback-status" id="feedbackStatus"></div>
+              <div class="feedback-penjelasan" id="feedbackPenjelasan"></div>
+            </div>
+
+            <div class="quiz-arena-actions">
+              <button id="nextQuestionBtn" class="btn btn-primary">
+                Lap Berikutnya 🏎️ ➡️
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== LAYAR 3: HASIL KUIS / PODIUM FINISH ==================== -->
+        <section id="quizScreenResult" class="quiz-result-card" aria-label="Hasil Kuis">
+          <div class="result-badge-icon" id="resultBadgeIcon">🏆</div>
+          <h2 class="result-title">Checkered Flag Dikibarkan! 🏁</h2>
+          <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">
+            Kerja fantastis di sirkuit, <strong id="resultPlayerName" style="color: var(--ferrari-yellow);">Pembalap</strong>!
+          </p>
+          <p class="result-motivation" id="resultMotivation">Luar biasa! Pertahankan ritme balapmu!</p>
+
+          <div class="result-stats-grid">
+            <div class="stat-box">
+              <div class="stat-val highlight" id="resultFinalScore">0</div>
+              <div class="stat-label">Total Poin Kejuaraan (Pts)</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" style="color: var(--success);" id="resultCorrectCount">0</div>
+              <div class="stat-label">Jawaban Benar</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" style="color: var(--error);" id="resultWrongCount">0</div>
+              <div class="stat-label">Jawaban Salah</div>
+            </div>
+          </div>
+
+          <div style="background-color: var(--bg-surface); border: 1.5px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 2rem;">
+            <span style="color: var(--text-secondary); font-size: 0.95rem;">Tingkat Akurasi Lap: </span>
+            <strong id="resultAccuracy" style="color: var(--accent-cyan); font-size: 1.25rem;">0%</strong>
+          </div>
+
+          <div class="result-actions">
+            <button id="playAgainBtn" class="btn btn-primary">
+              🔄 Balapan Lagi
+            </button>
+            <a href="peringkat.html" class="btn btn-secondary">
+              🏆 Lihat Podium Peringkat
+            </a>
+            <a href="materi.html" class="btn btn-outline">
+              📚 Review Materi Modul
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-badge">🏎️</span>
+            <div class="logo-text">
+              Edu<span>Quest</span>
+              <span class="logo-sub">Scuderia Tifosi Edition</span>
+            </div>
+          </div>
+          <p>
+            Bank soal pilihan ganda interaktif bertempo tinggi dengan acak soal otomatis, indikator Tachometer, dan umpan balik ilmiah.
+          </p>
+        </div>
+
+        <div class="footer-team">
+          <h4>🏁 Tim Scuderia Tifosi (Tugas Kelompok)</h4>
+          <div class="team-members-list">
+            <span class="team-badge">Tifosi / Hafidz</span>
+            <span class="team-badge">Afif</span>
+            <span class="team-badge">Intan</span>
+            <span class="team-badge">Deka</span>
+            <span class="team-badge">Taqiy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 EduQuest - Scuderia Tifosi Edition. Dibuat dengan HTML5, CSS3, &amp; Vanilla JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/kuis.js"></script>
+</body>
+</html>
